@@ -5,7 +5,7 @@ import {
   apiAuthPrefix,
   publicRoutes,
   authRoutes,
-} from "@/routes";
+} from "./routes";
 
 const { auth } = NextAuth(authConfig);
 
@@ -14,9 +14,14 @@ export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
+  const errorPath = nextUrl.pathname.includes('/api/auth/auth/login')
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+  if(errorPath){
+    return Response.redirect(new URL("/auth/login?error=OAuthAccountNotLinked", nextUrl));
+  }
 
   // 用於 api請求的路由不需額外驗
   if (isApiAuthRoute) {
@@ -34,6 +39,7 @@ export default auth((req) => {
   }
   // 如果用戶未登錄且訪問的路徑不在公開路徑中
   if (!isLoggedIn && !isPublicRoute) {
+    // return Response.redirect(new URL("/auth/login", nextUrl));
     return Response.redirect(new URL("/auth/login", nextUrl));
   }
   return null;

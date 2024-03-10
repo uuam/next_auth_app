@@ -1,9 +1,8 @@
-import { auth, signOut } from "@/auth";
+import { auth, signOut } from "../../../auth";
 import { Button } from "@/components/ui/button";
 
 const SettingPage = async () => {
   const session = await auth();
-  console.log('session',session)
   return (
     <div>
       {JSON.stringify(session)}

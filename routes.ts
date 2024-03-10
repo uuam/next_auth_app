@@ -15,7 +15,7 @@ export const publicRoutes = ["/"];
  * 這些路由需要用戶身份驗證。如果用戶未登錄，訪問這些路由將被重定向到登錄頁面。如果用戶已經登錄，則將被重定向到預設的登錄後重定向路徑
  *  @type {string[]}
  */
-export const authRoutes = ["/auth/login","/auth/register"];
+export const authRoutes = ["/auth/login", "/auth/register", "/auth/error"];
 
 /**
  * The prefix for API authentication routes
