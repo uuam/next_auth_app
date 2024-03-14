@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import { CardWrapper } from "./card-wrapper";
+import { CardWrapper } from "@/components/auth/card-wrapper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "../../schemas";
@@ -12,6 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
@@ -19,6 +20,7 @@ import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
+import { BeatLoader } from "react-spinners";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -41,12 +43,18 @@ export const LoginForm = () => {
     setSuccess("");
     startIsPending(() => {
       login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
 
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setInputValue(newValue);
+  };
   return (
     <CardWrapper
       headerLabel="Welcome back"
@@ -69,6 +77,11 @@ export const LoginForm = () => {
                       {...field}
                       placeholder="john@example.com"
                       disabled={isPending}
+                      onChange={(e) => {
+                        handleInputChange;
+                        field.onChange(e);
+                      }}
+                      value={inputValue || field.value}
                     />
                   </FormControl>
                   <FormMessage />
@@ -84,6 +97,22 @@ export const LoginForm = () => {
                   <FormControl>
                     <Input type="password" {...field} placeholder="******" />
                   </FormControl>
+                  <Button
+                    size="sm"
+                    variant="link"
+                    asChild
+                    className="px-0 font-normal text-xs"
+                  >
+                    <Link
+                      href={
+                        inputValue
+                          ? `/auth/reset?email=${inputValue}`
+                          : "/auth/reset"
+                      }
+                    >
+                      Forgot password?
+                    </Link>
+                  </Button>
                   <FormMessage />
                 </FormItem>
               )}
@@ -92,7 +121,11 @@ export const LoginForm = () => {
           <FormSuccess message={success} />
           <FormError message={error || urlError} />
           <Button disabled={isPending} className="w-full" type="submit">
-            Login
+            {isPending ? (
+              <BeatLoader className="text-center" size={10} />
+            ) : (
+              "Login"
+            )}
           </Button>
         </form>
       </Form>

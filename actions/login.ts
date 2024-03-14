@@ -6,9 +6,9 @@ import { LoginSchema } from "../schemas";
 import { AuthError } from "next-auth";
 import * as z from "zod";
 import { generateVerificationToken } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
-  // 驗證字段
   const validatedFields = LoginSchema.safeParse(values);
   // safeParse() 會返回一個 ZodParsedType
 
@@ -23,9 +23,14 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email doesn't exist!" };
   }
+  // 如果信箱還沒有驗證，則再寄一封認證信
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(
       existingUser.email
+    );
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
     );
     return { success: "Confirmation email sent!" };
   }
@@ -47,6 +52,5 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
     throw error;
   }
-
   return { success: "Email sent!" };
 };

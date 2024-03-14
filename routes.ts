@@ -6,7 +6,7 @@
  * 這些路由是公開訪問的，不需要身份驗證即可訪問
  *  @type {string[]}
  */
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "/auth/new-verification"];
 /**
  * An array of routes that are used for authentication
  * 用於身份驗證的路由陣列
@@ -15,7 +15,7 @@ export const publicRoutes = ["/"];
  * 這些路由需要用戶身份驗證。如果用戶未登錄，訪問這些路由將被重定向到登錄頁面。如果用戶已經登錄，則將被重定向到預設的登錄後重定向路徑
  *  @type {string[]}
  */
-export const authRoutes = ["/auth/login", "/auth/register", "/auth/error"];
+export const authRoutes = ["/auth/login", "/auth/register", "/auth/error", "/auth/reset", "/auth/new-password"];
 
 /**
  * The prefix for API authentication routes

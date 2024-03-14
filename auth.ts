@@ -38,12 +38,15 @@ export const {
     //   return true;
     // },
     async signIn({ user, account }) {
+      console.log("signIn:",{ user, account});
       // Allow OAuth without email verification 允許 OAuth 不需信箱驗證
       if (account?.provider !== "credentials") return true;
-      // @ts-ignore
-      const existingUser = await getUserById(user.id);
-      // Prevent sign in wuthout email verification
-      if (!existingUser?.emailVerified) return false;
+
+      if (user.id) {
+        const existingUser = await getUserById(user.id);
+        // Prevent sign in wuthout email verification
+        if (!existingUser?.emailVerified) return false;
+      }
       // TODO: Add 2FA check
       return true;
     },

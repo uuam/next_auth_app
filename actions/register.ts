@@ -6,6 +6,7 @@ import { db } from "../lib/db";
 import { RegisterSchema } from "../schemas";
 import bcrypt from "bcryptjs";
 import * as z from "zod";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.parse(values);
@@ -24,9 +25,10 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       name,
     },
   });
-  const verificationToken = await generateVerificationToken(email)
+  const verificationToken = await generateVerificationToken(email);
 
   // TODO: 發送驗證 token 電子郵件， token: 身份驗證或授權信息
+  await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
   return { success: "Confirmation email snet!" };
 };
