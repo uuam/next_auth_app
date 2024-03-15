@@ -3,6 +3,8 @@ import authConfig from "./auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "./lib/db";
 import { getUserById } from "./data/user";
+import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
+import { UserRole } from "@prisma/client";
 
 export const {
   handlers: { GET, POST },
@@ -38,16 +40,24 @@ export const {
     //   return true;
     // },
     async signIn({ user, account }) {
-      console.log("signIn:",{ user, account});
+      console.log("signIn:", { user, account });
       // Allow OAuth without email verification 允許 OAuth 不需信箱驗證
       if (account?.provider !== "credentials") return true;
+      const existingUser = await getUserById(user.id!);
+      // Prevent sign in wuthout email verification
+      if (!existingUser?.emailVerified) return false;
 
-      if (user.id) {
-        const existingUser = await getUserById(user.id);
-        // Prevent sign in wuthout email verification
-        if (!existingUser?.emailVerified) return false;
-      }
       // TODO: Add 2FA check
+      if (existingUser.isTwoFactorEnabled) {
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
+          existingUser.id
+        );
+        if (!twoFactorConfirmation) return false;
+        // Delete two factor confirmation for next sign in
+        await db.twoFactorConfirmation.delete({
+          where: { userId: twoFactorConfirmation.userId, },
+        });
+      }
       return true;
     },
     async session({ token, session }) {
@@ -55,7 +65,10 @@ export const {
         session.user.id = token.sub;
       }
       if (token.role && session.user) {
-        session.user.role = token.role;
+        session.user.role = token.role as UserRole;
+      }
+      if (token.isTwoFactorEnabled && session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as Boolean ;
       }
       return session;
     },
@@ -64,6 +77,7 @@ export const {
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
       token.role = existingUser.role;
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
       return token;
     },
   },
