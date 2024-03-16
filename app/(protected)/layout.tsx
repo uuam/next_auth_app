@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useMemo } from "react";
 import { Navbar } from "@/app/(protected)/_components/navbar";
 
 interface ProtectedLayoutProps {
