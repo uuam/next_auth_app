@@ -6,12 +6,7 @@ import { useMemo } from "react";
 const ClientPage = () => {
   const user = useCurrentUser();
 
-  // return <UserInfo label="📱Client component" user={user} />;
-  const memoizedUserInfo = useMemo(() => {
-    return <UserInfo label="📱 Client component" user={user} />;
-  }, [user]);
-
-  return memoizedUserInfo;
+  return <UserInfo label="📱Client component" user={user} />;
 };
 
 export default ClientPage;

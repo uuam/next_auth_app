@@ -27,7 +27,6 @@ export default auth((req) => {
   if (isApiAuthRoute) {
     return null;
   }
-
   // 登入和註冊頁面通常被列為需要進行身份驗證的路徑，以確保只有未登入的用戶才能訪問它們。這樣可以防止已經登入的用戶再次訪問這些頁面。
   // 如果是需要身份驗證的路徑
   if (isAuthRoute) {
@@ -39,8 +38,16 @@ export default auth((req) => {
   }
   // 如果用戶未登錄且訪問的路徑不在公開路徑中
   if (!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname
+    console.log('callbackurl:', callbackUrl)
+    if(nextUrl.search){
+      callbackUrl += nextUrl.search
+    }
+    console.log('callbackurl:', callbackUrl)
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl)
+    console.log('encodedCallbackUrl:', encodedCallbackUrl)
     // return Response.redirect(new URL("/auth/login", nextUrl));
-    return Response.redirect(new URL("/auth/login", nextUrl));
+    return Response.redirect(new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl));
   }
   return null;
 });

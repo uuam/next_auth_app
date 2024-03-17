@@ -25,11 +25,11 @@ export const RegisterSchema = z.object({
 export const SettingsSchema = z
   .object({
     name: z.optional(z.string()),
-    isTwoFactorEnabeled: z.optional(z.boolean()),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
     email: z.optional(z.string().email()),
     password: z.optional(z.string().min(6)),
     newPassword: z.optional(z.string().min(6)),
+    isTwoFactorEnabled: z.optional(z.boolean()),
   })
   // refine 方法用於對已定義的 schema 進行進一步的細化或驗證
   .refine(

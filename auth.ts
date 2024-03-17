@@ -12,6 +12,7 @@ export const {
   auth,
   signIn,
   signOut,
+  unstable_update
 } = NextAuth({
   // pages: 不使用NextAuth提供的，指定自己創建的
   pages: {
@@ -41,7 +42,6 @@ export const {
     //   return true;
     // },
     async signIn({ user, account }) {
-      console.log("signIn:", { user, account });
       // Allow OAuth without email verification 允許 OAuth 不需信箱驗證
       if (account?.provider !== "credentials") return true;
       const existingUser = await getUserById(user.id!);

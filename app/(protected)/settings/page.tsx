@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -31,6 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { UserRole } from "@prisma/client";
+import { Switch } from "@/components/ui/switch";
 
 const SettingPage = () => {
   const user = useCurrentUser();
@@ -47,7 +49,8 @@ const SettingPage = () => {
       password: undefined,
       newPassword: undefined,
       role: user?.role || undefined,
-    }
+      isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
+    },
   });
 
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
@@ -94,68 +97,73 @@ const SettingPage = () => {
                         disabled={isPending}
                       />
                     </FormControl>
-                    <FormMessage/>
+                    <FormMessage />
                   </FormItem>
                 )}
                 control={form.control}
               />
-              {/* email */}
-              <FormField
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder={user?.email || "test@example.com"}
-                        disabled={isPending}
-                        type="text"
-                      />
-                    </FormControl>
-                    <FormMessage/>
-                  </FormItem>
-                )}
-                control={form.control}
-              />
-              {/* password */}
-              <FormField
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="password"
-                        placeholder="******"
-                        disabled={isPending}
-                      />
-                    </FormControl>
-                    <FormMessage/>
-                  </FormItem>
-                )}
-                control={form.control}
-              />
-              {/* new password */}
-              <FormField
-                name="newPassword"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>New Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="password"
-                        placeholder="******"
-                        disabled={isPending}
-                      />
-                    </FormControl>
-                    <FormMessage/>
-                  </FormItem>
-                )}
-                control={form.control}
-              />
+              {user?.isOAuth === false && (
+                <>
+                  {/* email */}
+                  <FormField
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder={user?.email || "test@example.com"}
+                            disabled={isPending}
+                            type="text"
+                            // readOnly={true}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                    control={form.control}
+                  />
+                  {/* password */}
+                  <FormField
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="password"
+                            placeholder="******"
+                            disabled={isPending}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                    control={form.control}
+                  />
+                  {/* new password */}
+                  <FormField
+                    name="newPassword"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>New Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="password"
+                            placeholder="******"
+                            disabled={isPending}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                    control={form.control}
+                  />
+                </>
+              )}
               {/* role */}
               <FormField
                 name="role"
@@ -177,17 +185,45 @@ const SettingPage = () => {
                         <SelectItem value={UserRole.USER}>User</SelectItem>
                       </SelectContent>
                     </Select>
-                    <FormMessage/>
+                    <FormMessage />
                   </FormItem>
                 )}
                 control={form.control}
               />
+              {user?.isOAuth === false && (
+                <>
+                  {/* isTwoFactor */}
+                  <FormField
+                    name="isTwoFactorEnabled"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                        <div className="space-y-0.5">
+                          <FormLabel>Two Factor Authentication</FormLabel>
+                          <FormDescription>
+                            Enable two factor authentication for your account
+                          </FormDescription>
+                        </div>
+                        <FormControl>
+                          <Switch
+                            disabled={isPending}
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                    control={form.control}
+                  />
+                </>
+              )}
             </div>
             <FormError message={error} />
             <FormSuccess message={success} />
-            <Button disabled={isPending} type="submit" className="min-w-16">
-              {isPending ? <BeatLoader size={10} /> : "Save"}
-            </Button>
+            <div className="flex justify-end">
+              <Button disabled={isPending} type="submit" className="min-w-16">
+                {isPending ? <BeatLoader size={10} /> : "Save"}
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>

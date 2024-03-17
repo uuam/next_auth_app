@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { LoginForm } from "./login-form";
 
 interface LoginButtonProps {
   children: React.ReactNode;
@@ -10,19 +12,23 @@ interface LoginButtonProps {
 
 export const LoginButton = ({
   children,
-  mode = 'redirect',
+  mode = "redirect",
   asChild,
 }: LoginButtonProps) => {
-    const router = useRouter()
+  const router = useRouter();
   const onClick = () => {
     router.push("/auth/login");
   };
-  if(mode === 'modal'){
-    return(
-        <span>
-            TODO: Implement modal
-        </span>
-    )
+  if (mode === "modal") {
+    return (
+      <Dialog>
+        {/* DialogTrigger 觸發對話框顯示的元素  */}
+        <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
+        <DialogContent className="p-0 w-auto bg-transparent border-none">
+          <LoginForm/>
+        </DialogContent>
+      </Dialog>
+    );
   }
   return (
     <span className="cursor-pointer" onClick={onClick}>
