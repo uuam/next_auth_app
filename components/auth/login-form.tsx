@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/login";
-import { use, useEffect, useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { BeatLoader } from "react-spinners";
 
@@ -32,21 +32,8 @@ export const LoginForm = () => {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  const [isPending, startIsPending] = useTransition();
-  const [email, setUserEmail] = useState('');
 
-  useEffect(() => {
-    const userEmail = sessionStorage.getItem("email");
-    if (userEmail) {
-      setUserEmail(userEmail);
-    }
-  }, []);
-  if (email) {
-    // 刪除 sessionStorage 中的資料
-    sessionStorage.removeItem("email");
-    // 清空 sessionStorage 中的所有資料
-    sessionStorage.clear();
-  }
+  const [isPending, startIsPending] = useTransition();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -82,12 +69,6 @@ export const LoginForm = () => {
     });
   };
 
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setInputValue(newValue);
-  };
   return (
     <CardWrapper
       headerLabel="Welcome back"
@@ -147,10 +128,9 @@ export const LoginForm = () => {
                             placeholder="john@example.com"
                             disabled={isPending}
                             onChange={(e) => {
-                              handleInputChange;
                               field.onChange(e);
                             }}
-                            value={inputValue || field.value || email}
+                            value={field.value}
                           />
                         </FormControl>
                         <FormMessage />
@@ -176,6 +156,7 @@ export const LoginForm = () => {
                           asChild
                           className="px-0 font-normal text-xs"
                         >
+                          {/* forgot password */}
                           <Link href="/auth/reset">Forgot password?</Link>
                         </Button>
                         <FormMessage />

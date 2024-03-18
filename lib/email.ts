@@ -3,7 +3,8 @@ import nodemailer from "nodemailer";
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  service: "Gmail",
+  // host: "smtp.gmail.com",
   port: 587,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
@@ -17,7 +18,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
     from: "<testmail.tobey@gmail.com>",
     to: email,
     subject: "2FA Code",
-    html: `2FA Code: ${token}`,
+    html: `2FA Code:<strong>${token}`,
   });
 };
 
@@ -28,7 +29,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     from: "<testmail.tobey@gmail.com>",
     to: email,
     subject: "Verify your email",
-    html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`,
+    html: `<p>Click <strong><a style="color:#168db5" href="${confirmLink}">here</a><strong> to confirm email.</p>`,
   });
 };
 
@@ -39,6 +40,6 @@ export const sendResetPasswordEmail = async (email: string, token: string) => {
     from: "<testmail.tobey@gmail.com>",
     to: email,
     subject: "Reset your password",
-    html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`,
+    html: `<p>Click <strong><a style="color:#168db5" href="${resetLink}">here</a><strong>  to reset password.</p>`,
   });
 };

@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 雙重驗證註冊系統
+這是一個帶有雙重驗證功能的註冊系統，用戶註冊時需要通過電子郵件驗證碼進行身份驗證。
 
-## Getting Started
+## 功能
 
-First, run the development server:
+- 使用者註冊時需要提供有效的電子郵件地址，系統會向該郵箱發送驗證碼以進行驗證。
+- 使用者在登入後需要進行兩步驟驗證，通常是使用驗證應用程式生成的動態驗證碼。
+- 使用者可以選擇使用第三方社交平台（如 Google、Github）進行註冊和登入。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 技術堆疊
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+這個專案使用了下列技術：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 開發框架和工具
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Next.js](https://nextjs.org/) - 基於 React 的前端框架，用於構建客戶端應用程式。
+- [Prisma](https://www.prisma.io/) 作為數據庫 ORM，用於操作數據庫。
+- [Tailwind CSS](https://tailwindcss.com/) - 一個高度可定制的 CSS 框架，用於設計界面和佈局。
 
-## Learn More
+### 前端庫和組件
 
-To learn more about Next.js, take a look at the following resources:
+- [React](https://reactjs.org/) - JavaScript 库，用於構建用戶界面。
+- [React Hook Form](https://react-hook-form.com/) - 一個 React 表單庫，用於處理表單輸入和驗證。
+- [React Icons](https://react-icons.github.io/react-icons/) - 一個 React 圖標庫，提供了許多常用圖標的組件。
+- [React Spinners](https://www.npmjs.com/package/react-spinners) - 一個 React 組件庫，提供了各種加載指示器的組件。
+- [Shadcn UI](https://ui.shadcn.com/) 提供了一系列可重用的 UI 元件
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 其他工具和庫
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [NextAuth.js](https://next-auth.js.org/) - 一個用於管理身份驗證的庫，支持社交登入和多種驗證策略。
+- [Nodemailer](https://nodemailer.com/about/) - 一個 Node.js 的郵件發送庫，用於發送郵件。
+- [Zod](https://github.com/colinhacks/zod) - 一個 TypeScript-first 的驗證庫，用於驗證數據結構。
 
-## Deploy on Vercel
+### 開發工具
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript 的超集，用於增強靜態類型檢查功能。
+- [ESLint](https://eslint.org/) - 一個 JavaScript 和 TypeScript 的靜態代碼分析工具，用於檢查代碼風格和發現錯誤。
+- [Prettier](https://prettier.io/) - 一個代碼格式化工具，用於自動格式化代碼風格。
+- [Nodemailer](https://nodemailer.com/) 進行郵件發送
+- [UUID](https://www.npmjs.com/package/uuid) 用於生成唯一標識符
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs) 進行密碼加密和驗證

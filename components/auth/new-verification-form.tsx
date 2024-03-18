@@ -13,7 +13,6 @@ export const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
   const searchParams = useSearchParams();
-
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
@@ -27,9 +26,6 @@ export const NewVerificationForm = () => {
       .then((data) => {
         setSuccess(data?.success);
         setError(data?.error);
-        if (data.email) {
-          sessionStorage.setItem("email", data.email);
-        }
       })
       .catch(() => {
         setError("Something went wrong!");

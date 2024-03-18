@@ -19,14 +19,13 @@ import { FormSuccess } from "@/components/form-success";
 import { useState, useTransition } from "react";
 import { BeatLoader } from "react-spinners";
 import { reset } from "@/actions/reset";
-import { useSearchParams } from "next/navigation";
+
 
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startIsPending] = useTransition();
-  const searchParams = useSearchParams();
-  const inputEmail = searchParams.get("email");
+
   const form = useForm<z.infer<typeof ResetSchema>>({
     resolver: zodResolver(ResetSchema),
     defaultValues: {
@@ -34,7 +33,6 @@ export const ResetForm = () => {
     },
   });
 
-  sessionStorage.clear();
   const onSubmit = async (values: z.infer<typeof ResetSchema>) => {
     setError("");
     setSuccess("");
@@ -67,7 +65,7 @@ export const ResetForm = () => {
                       {...field}
                       placeholder="john@example.com"
                       disabled={isPending}
-                      value={inputEmail || field.value}
+                      value={field.value}
                       onChange={(e) => {
                         field.onChange(e);
                       }}

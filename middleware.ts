@@ -43,16 +43,14 @@ export default auth((req) => {
     if(nextUrl.search){
       callbackUrl += nextUrl.search
     }
-    console.log('callbackurl:', callbackUrl)
     const encodedCallbackUrl = encodeURIComponent(callbackUrl)
-    console.log('encodedCallbackUrl:', encodedCallbackUrl)
     // return Response.redirect(new URL("/auth/login", nextUrl));
     return Response.redirect(new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl));
   }
   return null;
 });
 
-// Optionally, don't invoke Middleware on some paths
+// Optionally 不要在某些路徑上呼叫中間件
 export const config = {
   // 用於指定哪些路由或路徑應該應用這個中介軟體
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
