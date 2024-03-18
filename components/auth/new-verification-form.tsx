@@ -13,6 +13,7 @@ export const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
   const searchParams = useSearchParams();
+
   const token = searchParams.get("token");
 
   const onSubmit = useCallback(() => {
@@ -24,8 +25,11 @@ export const NewVerificationForm = () => {
     }
     newVerification(token)
       .then((data) => {
-        setSuccess(data.success);
-        setError(data.error);
+        setSuccess(data?.success);
+        setError(data?.error);
+        if (data.email) {
+          sessionStorage.setItem("email", data.email);
+        }
       })
       .catch(() => {
         setError("Something went wrong!");
@@ -44,7 +48,7 @@ export const NewVerificationForm = () => {
       // 如果 success 改變，執行重定向到登錄頁面的邏輯
       setTimeout(() => {
         window.location.href = "/auth/login";
-      }, 1000);
+      }, 700);
     }
   }, [success]);
   return (

@@ -34,6 +34,7 @@ export const ResetForm = () => {
     },
   });
 
+  sessionStorage.clear();
   const onSubmit = async (values: z.infer<typeof ResetSchema>) => {
     setError("");
     setSuccess("");

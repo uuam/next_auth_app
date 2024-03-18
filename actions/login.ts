@@ -9,14 +9,15 @@ import {
   generateVerificationToken,
   generateTwoFactorToken,
 } from "@/lib/tokens";
-import { sendVerificationEmail, sendTwoFactorTokenEmail } from "@/lib/mail";
+// import { sendVerificationEmail } from "@/lib/mail";
+import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/email";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 import { db } from "@/lib/db";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 
 export const login = async (
   values: z.infer<typeof LoginSchema>,
-  callbackUrl?: string | null,
+  callbackUrl?: string | null
 ) => {
   const validatedFields = LoginSchema.safeParse(values);
   // safeParse() 會返回一個 ZodParsedType
@@ -52,7 +53,12 @@ export const login = async (
       if (twoFactorToken.token !== code) return { error: "Invalid code!" };
       const hasExpired = new Date(twoFactorToken?.expires) < new Date();
 
-      if (hasExpired) return { error: "Code has expired!" };
+      if (hasExpired) {
+        await db.twoFactorToken.delete({
+          where: { id: twoFactorToken.id, token: twoFactorToken.token },
+        });
+        return { error: "Code has expired!" };
+      }
 
       await db.twoFactorToken.delete({
         where: { id: twoFactorToken.id, token: twoFactorToken.token },
@@ -76,6 +82,7 @@ export const login = async (
       if (hasTwoFactorToken) return { twoFactor: true };
 
       const twoFactorToken = await generateTwoFactorToken(existingUser.email);
+      console.log(twoFactorToken.token);
       await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
       return { twoFactor: true };
     }

@@ -18,13 +18,13 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/login";
-import { useState, useTransition } from "react";
+import { use, useEffect, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { BeatLoader } from "react-spinners";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl')
+  const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with diierent provider!"
@@ -33,12 +33,27 @@ export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startIsPending] = useTransition();
+  const [email, setUserEmail] = useState('');
+
+  useEffect(() => {
+    const userEmail = sessionStorage.getItem("email");
+    if (userEmail) {
+      setUserEmail(userEmail);
+    }
+  }, []);
+  if (email) {
+    // 刪除 sessionStorage 中的資料
+    sessionStorage.removeItem("email");
+    // 清空 sessionStorage 中的所有資料
+    sessionStorage.clear();
+  }
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
-      code:"",
+      code: "",
     },
   });
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
@@ -62,7 +77,7 @@ export const LoginForm = () => {
         })
         .catch((error) => {
           setError("Something went worng!");
-          console.log(error)
+          console.log(error);
         });
     });
   };
@@ -135,7 +150,7 @@ export const LoginForm = () => {
                               handleInputChange;
                               field.onChange(e);
                             }}
-                            value={inputValue || field.value}
+                            value={inputValue || field.value || email}
                           />
                         </FormControl>
                         <FormMessage />
@@ -161,15 +176,7 @@ export const LoginForm = () => {
                           asChild
                           className="px-0 font-normal text-xs"
                         >
-                          <Link
-                            href={
-                              inputValue
-                                ? `/auth/reset?email=${inputValue}`
-                                : "/auth/reset"
-                            }
-                          >
-                            Forgot password?
-                          </Link>
+                          <Link href="/auth/reset">Forgot password?</Link>
                         </Button>
                         <FormMessage />
                       </FormItem>

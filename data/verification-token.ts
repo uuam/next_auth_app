@@ -21,3 +21,4 @@ export const getVerificationByToken = async (token: string) => {
     return null;
   }
 };
+

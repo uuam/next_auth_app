@@ -18,7 +18,7 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { useState, useTransition } from "react";
 import { register } from "@/actions/register";
-import { redirect } from "next/navigation";
+import { BeatLoader } from "react-spinners";
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -106,7 +106,7 @@ export const RegisterForm = () => {
           <FormSuccess message={success} />
           <FormError message={error} />
           <Button disabled={isPending} className="w-full" type="submit">
-            Create an account
+            {isPending ? <BeatLoader size={10} /> : "Create an account"}
           </Button>
         </form>
       </Form>
