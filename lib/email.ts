@@ -29,14 +29,16 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
     subject: "AUTH 雙重驗證碼",
     html: ` <div
     style="
-      padding: 3rem 2rem;
-      display: flex;
-      text-align: center;
-      margin: 0 auto;
-      border: 1px solid #bbbbbbae;
-      width: 16rem;
-      border-radius: 10px;
-      "
+    padding: 1rem 2rem 2rem;
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid #bbbbbbae;
+    width: 16rem;
+    border-radius: 10px;
+    justify-content: center !important;
+    box-shadow: 3px 4px 5px 0px #a2a2a233;
+  "
   >
     <div style="width: 100%">
       <p
@@ -45,6 +47,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
           border-bottom: 1px solid #bbbbbbae;
           padding-bottom: 1rem;
           color: #4c4c4c;
+          font-weight: 200;
         "
       >
         驗證您的信箱 📩
@@ -64,8 +67,63 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   await transporter.sendMail({
     from: "<testmail.tobey@gmail.com>",
     to: email,
-    subject: "Verify your email",
-    html: `<p>Click <strong><a style="color:#168db5" href="${confirmLink}">here</a><strong> to confirm email.</p>`,
+    subject: "註冊成功！",
+    html: ` <div
+      style="
+        padding: 1rem 2rem 2rem;
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        border: 1px solid #bbbbbbae;
+        width: 16rem;
+        border-radius: 10px;
+        justify-content: center !important;
+        box-shadow: 3px 4px 5px 0px #a2a2a233;
+      "
+    >
+      <div style="width: 100%">
+        <p
+          style="
+            font-size: large;
+            border-bottom: 1px solid #bbbbbbae;
+            padding-bottom: 1rem;
+            color: #4c4c4c;
+            font-weight: 200;
+          "
+        >
+          註冊成功 🎉
+        </p>
+        <p
+          style="
+            font-size: medium;
+            font-weight: 300;
+            margin: 3rem 0;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 1rem;
+            color: black;
+          "
+        >
+          請點擊
+          <strong
+            ><a
+              style="text-decoration: none; color: #328ab3"
+              href="${confirmLink}"
+              >這裡</a
+            ></strong
+          >
+          回到網頁驗證
+        </p>
+        <p style="font-size: small; color: #4c4c4c; font-weight: 200">
+          該連結將在
+          <span id="countdownspan" class="countdown" style="font-weight: 400"
+            >60 分鐘</span
+          >
+          後失效
+        </p>
+      </div>
+    </div>
+`,
   });
 };
 
@@ -75,7 +133,62 @@ export const sendResetPasswordEmail = async (email: string, token: string) => {
   await transporter.sendMail({
     from: "<testmail.tobey@gmail.com>",
     to: email,
-    subject: "Reset your password",
-    html: `<p>Click <strong><a style="color:#168db5" href="${resetLink}">here</a><strong>  to reset password.</p>`,
+    subject: "重新設置新密碼",
+    html: ` <div
+      style="
+        padding: 1rem 2rem 2rem;
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        border: 1px solid #bbbbbbae;
+        width: 16rem;
+        border-radius: 10px;
+        justify-content: center !important;
+        box-shadow: 3px 4px 5px 0px #a2a2a233;
+      "
+    >
+      <div style="width: 100%">
+        <p
+          style="
+            font-size: large;
+            border-bottom: 1px solid #bbbbbbae;
+            padding-bottom: 1rem;
+            color: #4c4c4c;
+            font-weight: 200;
+          "
+        >
+          重新設定密碼 🔐
+        </p>
+        <p
+          style="
+            font-size: medium;
+            font-weight: 300;
+            margin: 3rem 0;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 1rem;
+            color: black;
+          "
+        >
+          請點擊
+          <strong
+            ><a
+              style="text-decoration: none; color: #328ab3"
+              href="${resetLink}"
+              >這裡</a
+            ></strong
+          >
+          重新設置新密碼
+        </p>
+        <p style="font-size: small; color: #4c4c4c; font-weight: 200">
+          該連結將在
+          <span id="countdownspan" class="countdown" style="font-weight: 400"
+            >60 分鐘</span
+          >
+          後失效
+        </p>
+      </div>
+    </div>
+`,
   });
 };
