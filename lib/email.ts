@@ -13,12 +13,48 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
+//   await transporter.sendMail({
+//     from: "<testmail.tobey@gmail.com>",
+//     to: email,
+//     subject: "AUTH 雙重驗證碼",
+//     html: `
+//     驗證碼:<strong>${token}</strong>`,
+//   });
+// };
 export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
   await transporter.sendMail({
     from: "<testmail.tobey@gmail.com>",
     to: email,
-    subject: "2FA Code",
-    html: `2FA Code:<strong>${token}`,
+    subject: "AUTH 雙重驗證碼",
+    html: ` <div
+    style="
+      padding: 3rem 2rem;
+      display: flex;
+      text-align: center;
+      margin: 0 auto;
+      border: 1px solid #bbbbbbae;
+      width: 16rem;
+      border-radius: 10px;
+      "
+  >
+    <div style="width: 100%">
+      <p
+        style="
+          font-size: large;
+          border-bottom: 1px solid #bbbbbbae;
+          padding-bottom: 1rem;
+          color: #4c4c4c;
+        "
+      >
+        驗證您的信箱 📩
+      </p>
+      <div style="font-weight: 900; font-size: xx-large">${token}</div>
+      <p style="font-size: small; margin-top: 2rem; color: #4c4c4c">
+        該代碼將在 <span style="font-weight: 500">5 </span>分鐘後過期
+      </p>
+    </div>
+  </div>`,
   });
 };
 
