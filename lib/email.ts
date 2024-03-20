@@ -26,7 +26,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
   await transporter.sendMail({
     from: "<testmail.tobey@gmail.com>",
     to: email,
-    subject: "AUTH 雙重驗證碼",
+    subject: "請收取雙重驗證碼",
     html: ` <div
     style="
     padding: 1rem 2rem 2rem;
@@ -67,7 +67,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   await transporter.sendMail({
     from: "<testmail.tobey@gmail.com>",
     to: email,
-    subject: "註冊成功！",
+    subject: "恭喜成功註冊",
     html: ` <div
       style="
         padding: 1rem 2rem 2rem;
@@ -133,7 +133,7 @@ export const sendResetPasswordEmail = async (email: string, token: string) => {
   await transporter.sendMail({
     from: "<testmail.tobey@gmail.com>",
     to: email,
-    subject: "重新設置新密碼",
+    subject: "請收取密碼重設驗證",
     html: ` <div
       style="
         padding: 1rem 2rem 2rem;
