@@ -180,8 +180,13 @@ const SettingPage = () => {
                           <SelectValue placeholder="Select a role" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent >
-                        <SelectItem disabled={user?.role !== UserRole.ADMIN} value={UserRole.ADMIN}>管理員</SelectItem>
+                      <SelectContent>
+                        <SelectItem
+                          disabled={user?.role !== UserRole.ADMIN}
+                          value={UserRole.ADMIN}
+                        >
+                          管理員
+                        </SelectItem>
                         <SelectItem value={UserRole.USER}>用戶</SelectItem>
                       </SelectContent>
                     </Select>
