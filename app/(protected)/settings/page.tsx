@@ -69,7 +69,7 @@ const SettingPage = () => {
           }
         })
         .catch(() => {
-          setError("Something went wrong!");
+          setError("糟糕...出了點問題...");
         });
     });
   };

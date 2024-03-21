@@ -10,7 +10,7 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   const validatedFields = ResetSchema.safeParse(values);
   if (!validatedFields.success) {
     return {
-      error: "Invalid email!",
+      error: "無效的電子信箱!",
     };
   }
   const { email } = validatedFields.data;
@@ -18,7 +18,7 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
 
   if (!existingUser) {
     return {
-      error: "Email doesn't exist!",
+      error: "此信箱不存在!",
     };
   }
 
@@ -28,5 +28,5 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
     passwordResetToken.email,
     passwordResetToken.token
   );
-  return { success: "Reset email sent!" };
+  return { success: "重設密碼驗證信已寄出!" };
 };

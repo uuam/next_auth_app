@@ -45,7 +45,7 @@ export const ResetForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="確認用戶信箱"
+      headerLabel="發送驗證郵件"
       backButtonHref="/auth/login"
       backButtonLabel="返回登入頁面"
     >

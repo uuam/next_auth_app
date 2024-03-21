@@ -6,13 +6,13 @@ import { db } from "@/lib/db";
 
 export const newVerification = async (token: string) => {
   const existingToken = await getVerificationByToken(token);
-  if (!existingToken) return { error: "Token does not exist!" };
+  if (!existingToken) return { error: "驗證碼不存在!" };
 
   const hasExpired = new Date(existingToken.expires) < new Date();
-  if (hasExpired) return { error: "Token has expired!" };
+  if (hasExpired) return { error: "驗證碼已過期!" };
 
   const existingUser = await getUserByEmail(existingToken.email);
-  if (!existingUser) return { error: "Email does not exist!" };
+  if (!existingUser) return { error: "信箱不存在!" };
 
   await db.user.update({
     where: { id: existingUser.id },
@@ -25,5 +25,5 @@ export const newVerification = async (token: string) => {
     });
   }, 1000);
 
-  return { success: "Email verified!", email: existingToken.email };
+  return { success: "電子郵件已驗證!", email: existingToken.email };
 };

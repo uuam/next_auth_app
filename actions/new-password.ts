@@ -10,23 +10,23 @@ export const newPassword = async (
   values: z.infer<typeof NewPasswordSchema>,
   token?: string | null
 ) => {
-  if (!token) return { error: "Missing token" };
+  if (!token) return { error: "缺少 token" };
   const vaildatedFields = await NewPasswordSchema.parseAsync(values);
 
-  if (!vaildatedFields) return { error: "Invalid fields!" };
+  if (!vaildatedFields) return { error: "無效欄位!" };
 
   const { password } = vaildatedFields;
 
   const existingToken = await getPasswordResetTokenByToken(token);
 
-  if (!existingToken) return { error: "Invalid token!" };
+  if (!existingToken) return { error: "錯誤的 token" };
 
   const hasExpired = new Date(existingToken.expires) < new Date();
-  if (hasExpired) return { error: "Token has expired!" };
+  if (hasExpired) return { error: "token 已過期!" };
 
   const existingUser = await getUserByEmail(existingToken.email);
 
-  if (!existingUser) return { error: "Email does't exist!" };
+  if (!existingUser) return { error: "此信箱不存在!" };
   const hashedPassword = await bcrypt.hash(password, 10);
 
   await db.user.update({
@@ -42,5 +42,5 @@ export const newPassword = async (
       id: existingToken.id,
     },
   });
-  return {success: 'Password updated'}
+  return {success: '密碼已更新'}
 };

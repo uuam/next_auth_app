@@ -19,7 +19,7 @@ export const NewVerificationForm = () => {
     if (success || error) return;
 
     if (!token) {
-      setError("Missing token!");
+      setError("缺少驗證碼!");
       return;
     }
     newVerification(token)
@@ -28,7 +28,7 @@ export const NewVerificationForm = () => {
         setError(data?.error);
       })
       .catch(() => {
-        setError("Something went wrong!");
+        setError("出了點問題...");
       });
 
     // 當token 改變， onSubmit 重新創建
@@ -49,9 +49,9 @@ export const NewVerificationForm = () => {
   }, [success]);
   return (
     <CardWrapper
-      headerLabel="Confirming your verification"
+      headerLabel="確認您的驗證"
       backButtonHref="/auth/login"
-      backButtonLabel="Back to login"
+      backButtonLabel="返回登入頁面"
     >
       <div className="flex items-center w-full justify-center">
         {!success && !error && <BeatLoader size="10" color="#5a5a5a" />}

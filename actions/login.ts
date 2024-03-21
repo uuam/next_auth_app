@@ -23,7 +23,7 @@ export const login = async (
   // safeParse() 會返回一個 ZodParsedType
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" };
+    return { error: "無效欄位!" };
   }
   const { email, password, code } = validatedFields.data;
 
@@ -31,7 +31,7 @@ export const login = async (
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Email doesn't exist!" };
+    return { error: "此信箱不存在!" };
   }
   // 如果信箱還沒有驗證，則再寄一封認證信
   if (!existingUser.emailVerified) {
@@ -42,7 +42,7 @@ export const login = async (
       verificationToken.email,
       verificationToken.token
     );
-    return { success: "Confirmation email sent!" };
+    return { success: "驗證信件已送出!" };
   }
 
   // 雙重驗證系統
@@ -57,7 +57,7 @@ export const login = async (
         await db.twoFactorToken.delete({
           where: { id: twoFactorToken.id, token: twoFactorToken.token },
         });
-        return { error: "Code has expired!" };
+        return { error: "驗證碼已過期!" };
       }
 
       await db.twoFactorToken.delete({
@@ -98,12 +98,12 @@ export const login = async (
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Invalid credentials!" };
+          return { error: "憑證無效!" };
         default:
-          return { error: "Something went wrong!" };
+          return { error: "糟糕...出了點問題..." };
       }
     }
     throw error;
   }
-  return { success: "Email sent!" };
+  return { success: "驗證碼已發送至註冊信箱!" };
 };
