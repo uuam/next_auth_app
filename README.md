@@ -62,7 +62,7 @@ if (errorPath) {
   return Response.redirect(new URL("/auth/login?error=OAuthAccountNotLinked", nextUrl));
 }
 ```
-在這段代碼中，檢查了請求的路徑是否包含 /api/auth/auth/login，這是設置錯誤的回調時可能發生的情況。如果是，則將請求重定向到指定的錯誤路由 /auth/login?error=OAuthAccountNotLinked。
+在這段代碼中，檢查了請求的路徑是否包含 `/api/auth/auth/login`，這是設置錯誤的回調時可能發生的情況。如果是，則將請求重定向到指定的錯誤路由 `/auth/login?error=OAuthAccountNotLinked`。
 
 ### 未來規劃： 
 雖然目前可以使應用程式運行，但仍然希望在未來使用最新版本的 NextJS。將繼續關注 NextJS 的更新，並在修復此問題後盡快升級到最新版本。
