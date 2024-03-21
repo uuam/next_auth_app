@@ -1,7 +1,6 @@
 # 雙重驗證註冊系統練習
-這個項目是一個關於註冊系統及雙重驗證流程的練習應用程式。
-通過跟著教學影片學習，進一步瞭解了身份驗證（Auth）的應用。
-
+此項目是關於註冊系統及雙重驗證流程的練習應用程式。
+通過跟著教學影片學習，進一步理解身份驗證（Auth）的應用，並且對於 React 的架構設計和 Prisma 運作也有了更清晰的認知。
 
 ## 功能
 
@@ -16,17 +15,17 @@
 ### 開發框架和工具
 
 - [Next.js](https://nextjs.org/) - 基於 React 的前端框架，用於構建客戶端應用程式。
-- [Prisma](https://www.prisma.io/) 作為數據庫 ORM，用於操作數據庫。
+- [Prisma](https://www.prisma.io/) 作為資料庫 ORM，用於操作資料庫。
 - [Tailwind CSS](https://tailwindcss.com/) - 一個高度可定制的 CSS 框架，用於設計界面和佈局。
 
 ### 前端庫和組件
 
-- [React](https://reactjs.org/) - JavaScript 库，用於構建用戶界面。
-- [React Hook Form](https://react-hook-form.com/) - React 表單庫，用於處理表單輸入和驗證。
-- [React Icons](https://react-icons.github.io/react-icons/) - React 圖標庫，提供常用圖標的組件。
-- [React Spinners](https://www.npmjs.com/package/react-spinners) - React 組件庫，提供各種加載指示器的組件。
+- [React](https://reactjs.org/) - 用於構建用戶界面。
+- [React Hook Form](https://react-hook-form.com/) - 用於處理表單輸入和驗證。
+- [React Icons](https://react-icons.github.io/react-icons/) - 提供常用圖標的組件。
+- [React Spinners](https://www.npmjs.com/package/react-spinners) - 提供各種 Loading Components 的組件。
 - [Shadcn UI](https://ui.shadcn.com/) 提供可重用的 UI 元件
-- [Tailwind CSS](https://tailwindcss.com/) - 用於快速構建用戶界面的 CSS 框架，使用原子級的 CSS 類名定義界面風格和樣式。
+- [Tailwind CSS](https://tailwindcss.com/) - 用於快速構建界面的 CSS 框架，使用原子級的 CSS 類名定義風格和樣式。
 
 ### 其他工具和庫
 
@@ -40,7 +39,7 @@
 - [ESLint](https://eslint.org/) - JavaScript 和 TypeScript 的靜態代碼分析工具，用於檢查代碼風格和發現錯誤。
 - [Prettier](https://prettier.io/) - 代碼格式化工具，用於自動格式化代碼風格。
 - [Nodemailer](https://nodemailer.com/) 進行郵件發送
-- [UUID](https://www.npmjs.com/package/uuid) 用於生成唯一標識符
+- [UUID](https://www.npmjs.com/package/uuid) 用於生成唯一標示碼
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs) 進行密碼加密和驗證
 
 
