@@ -20,22 +20,23 @@
 ### 前端庫和組件
 
 - [React](https://reactjs.org/) - JavaScript 库，用於構建用戶界面。
-- [React Hook Form](https://react-hook-form.com/) - 一個 React 表單庫，用於處理表單輸入和驗證。
-- [React Icons](https://react-icons.github.io/react-icons/) - 一個 React 圖標庫，提供了許多常用圖標的組件。
-- [React Spinners](https://www.npmjs.com/package/react-spinners) - 一個 React 組件庫，提供了各種加載指示器的組件。
-- [Shadcn UI](https://ui.shadcn.com/) 提供了一系列可重用的 UI 元件
+- [React Hook Form](https://react-hook-form.com/) - React 表單庫，用於處理表單輸入和驗證。
+- [React Icons](https://react-icons.github.io/react-icons/) - React 圖標庫，提供常用圖標的組件。
+- [React Spinners](https://www.npmjs.com/package/react-spinners) - React 組件庫，提供各種加載指示器的組件。
+- [Shadcn UI](https://ui.shadcn.com/) 提供可重用的 UI 元件
+- [Tailwind CSS](https://tailwindcss.com/) - 用於快速構建用戶界面的 CSS 框架，使用原子級的 CSS 類名定義界面風格和樣式。
 
 ### 其他工具和庫
 
-- [NextAuth.js](https://next-auth.js.org/) - 一個用於管理身份驗證的庫，支持社交登入和多種驗證策略。
-- [Nodemailer](https://nodemailer.com/about/) - 一個 Node.js 的郵件發送庫，用於發送郵件。
-- [Zod](https://github.com/colinhacks/zod) - 一個 TypeScript-first 的驗證庫，用於驗證數據結構。
+- [NextAuth.js](https://next-auth.js.org/) - 用於管理身份驗證的庫，支持社交登入和多種驗證策略。
+- [Nodemailer](https://nodemailer.com/about/) - Node.js 的郵件發送庫，用於發送郵件。
+- [Zod](https://github.com/colinhacks/zod) - TypeScript-first 的驗證庫，用於驗證數據結構。
 
 ### 開發工具
 
 - [TypeScript](https://www.typescriptlang.org/) - JavaScript 的超集，用於增強靜態類型檢查功能。
-- [ESLint](https://eslint.org/) - 一個 JavaScript 和 TypeScript 的靜態代碼分析工具，用於檢查代碼風格和發現錯誤。
-- [Prettier](https://prettier.io/) - 一個代碼格式化工具，用於自動格式化代碼風格。
+- [ESLint](https://eslint.org/) - JavaScript 和 TypeScript 的靜態代碼分析工具，用於檢查代碼風格和發現錯誤。
+- [Prettier](https://prettier.io/) - 代碼格式化工具，用於自動格式化代碼風格。
 - [Nodemailer](https://nodemailer.com/) 進行郵件發送
 - [UUID](https://www.npmjs.com/package/uuid) 用於生成唯一標識符
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs) 進行密碼加密和驗證
