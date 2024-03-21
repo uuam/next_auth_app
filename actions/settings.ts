@@ -33,7 +33,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     // 確認 輸入的 email是否已經註冊過
     const existingUser = await getUserByEmail(values.email);
     if (existingUser && existingUser.id !== user.id) {
-      return { error: "Email already in use!" };
+      return { error: "此信箱已被註冊!" };
     }
     const verificationToken = await generateVerificationToken(values.email);
 
@@ -41,7 +41,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
       verificationToken.email,
       verificationToken.token
     );
-    return { success: "Vrtification email sent!" };
+    return { success: "驗證郵件已發送!" };
   }
 
   if (values.password && values.newPassword && dbUser.password) {
@@ -50,7 +50,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
       dbUser.password
     );
     if (!passwordIsMatch) {
-      return { error: "Password is incorrect!" };
+      return { error: "密碼錯誤!" };
     }
     const hashedPassword = await bcryct.hash(values.newPassword, 10);
 
@@ -72,5 +72,5 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     },
   });
 
-  return { success: "Settings Updated!" };
+  return { success: "設定已更新!" };
 };

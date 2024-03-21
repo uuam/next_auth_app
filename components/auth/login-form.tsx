@@ -27,7 +27,7 @@ export const LoginForm = () => {
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
-      ? "Email already in use with diierent provider!"
+      ? "此信箱已從其他應用程式註冊使用!"
       : "";
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
