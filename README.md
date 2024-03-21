@@ -40,3 +40,29 @@
 - [Nodemailer](https://nodemailer.com/) 進行郵件發送
 - [UUID](https://www.npmjs.com/package/uuid) 用於生成唯一標識符
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs) 進行密碼加密和驗證
+
+
+## 開發中遇到的難題
+
+### 技術問題：
+使用最新版本 NextJS 框架時，在 Auth.js 串接 Google Provider的過程，設置錯誤的回調無法正確導向指定的路由，導致卡關。
+
+### 問題描述： 
+在此專案中，我使用最新版本的 NextJS 架設網站，並使用 Auth.js 來實現身份驗證，並使用 Google 提供的憑證進行註冊及登入。然而，在設置錯誤的回調時，無法正確導向指定的路由，這導致應用程式無法正常運行。
+
+### 解決方法： 
+在最新版本的 NextJS 中，尚未修復此問題，因此我們暫時無法通過升級 NextJS 解決這個問題。但可以在中間件中進行處理暫時解決這個問題，以保持應用的正常運行。
+
+### 暫時的解決方法：
+```javascript=
+const { nextUrl } = req;
+
+const errorPath = nextUrl.pathname.includes('/api/auth/auth/login');
+if (errorPath) {
+  return Response.redirect(new URL("/auth/login?error=OAuthAccountNotLinked", nextUrl));
+}
+```
+在這段代碼中，檢查了請求的路徑是否包含 /api/auth/auth/login，這是設置錯誤的回調時可能發生的情況。如果是，則將請求重定向到指定的錯誤路由 /auth/login?error=OAuthAccountNotLinked。
+
+### 未來規劃： 
+雖然目前可以使應用程式運行，但仍然希望在未來使用最新版本的 NextJS。將繼續關注 NextJS 的更新，並在修復此問題後盡快升級到最新版本。
