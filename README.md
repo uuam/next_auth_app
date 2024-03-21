@@ -54,7 +54,7 @@
 在最新版本的 NextJS 中，尚未修復此問題，因此我們暫時無法通過升級 NextJS 解決這個問題。但可以在中間件中進行處理暫時解決這個問題，以保持應用的正常運行。
 
 ### 暫時的解決方法：
-'./middleware.ts'
+`./middleware.ts`
 ```javascript=
 const { nextUrl } = req;
 
