@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      style="
+        padding: 1rem 2rem 2rem;
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        border: 1px solid #bbbbbbae;
+        width: 16rem;
+        border-radius: 10px;
+        justify-content: center !important;
+        box-shadow: 3px 4px 5px 0px #a2a2a233;
+      "
+    >
+      <div style="width: 100%">
+        <p
+          style="
+            font-size: large;
+            border-bottom: 1px solid #bbbbbbae;
+            padding-bottom: 1rem;
+            color: #4c4c4c;
+            font-weight: 200;
+          "
+        >
+          重新設定密碼 🔐
+        </p>
+        <p
+          style="
+            font-size: medium;
+            font-weight: 300;
+            margin: 3rem 0;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 1rem;
+          "
+        >
+          請點擊
+          <strong
+            ><a
+              style="text-decoration: none; color: #328ab3"
+              href="${resetLink}"
+              >這裡</a
+            ></strong
+          >
+          重新設置新密碼
+        </p>
+        <p style="font-size: small; color: #4c4c4c; font-weight: 200">
+          該連結將在
+          <span id="countdownspan" class="countdown" style="font-weight: 400"
+            >60 分鐘</span
+          >
+          後失效
+        </p>
+      </div>
+    </div>
+    <!-- <script>
+      let minutes = 59;
+      let seconds = 58;
+
+      function updateCountdown() {
+        let countdownElement = document.getElementsByClassName("countdown")[0];
+
+        countdownElement.textContent = minutes + " 分 " + seconds + " 秒";
+      }
+
+      // 每秒更新一次倒數計時器
+      let countdownInterval = setInterval(function () {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(countdownInterval); // 時間到，停止倒數計時器
+            return;
+          }
+          minutes--;
+          seconds = 59;
+        } else {
+          seconds--;
+        }
+        updateCountdown();
+      }, 1000);
+      // 初始化顯示
+      updateCountdown();
+    </script> -->
+  </body>
+</html>
