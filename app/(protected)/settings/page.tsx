@@ -77,7 +77,7 @@ const SettingPage = () => {
   return (
     <Card className="w-[600px]">
       <CardHeader>
-        <p>⚙️ Settings</p>
+        <p className="text-2xl font-semibold text-center">⚙️ 設定</p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -88,7 +88,7 @@ const SettingPage = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>用戶名稱</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -109,7 +109,7 @@ const SettingPage = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>電子信箱</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -129,7 +129,7 @@ const SettingPage = () => {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>密碼</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -148,7 +148,7 @@ const SettingPage = () => {
                     name="newPassword"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>New Password</FormLabel>
+                        <FormLabel>新密碼</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -169,7 +169,7 @@ const SettingPage = () => {
                 name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Role</FormLabel>
+                    <FormLabel>用戶身份</FormLabel>
                     <Select
                       disabled={isPending}
                       onValueChange={field.onChange}
@@ -180,9 +180,9 @@ const SettingPage = () => {
                           <SelectValue placeholder="Select a role" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-                        <SelectItem value={UserRole.USER}>User</SelectItem>
+                      <SelectContent >
+                        <SelectItem disabled={user?.role !== UserRole.ADMIN} value={UserRole.ADMIN}>管理員</SelectItem>
+                        <SelectItem value={UserRole.USER}>用戶</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -198,9 +198,9 @@ const SettingPage = () => {
                     render={({ field }) => (
                       <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
                         <div className="space-y-0.5">
-                          <FormLabel>Two Factor Authentication</FormLabel>
+                          <FormLabel>雙重身份驗證</FormLabel>
                           <FormDescription>
-                            Enable two factor authentication for your account
+                            為您的帳戶啟用兩步驟驗證
                           </FormDescription>
                         </div>
                         <FormControl>
@@ -221,7 +221,7 @@ const SettingPage = () => {
             <FormSuccess message={success} />
             <div className="flex justify-end">
               <Button disabled={isPending} type="submit" className="min-w-16">
-                {isPending ? <BeatLoader size={10} /> : "Save"}
+                {isPending ? <BeatLoader size={10} /> : "儲存"}
               </Button>
             </div>
           </form>

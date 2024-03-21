@@ -8,6 +8,10 @@ body,
   height: 100%;
 }
 
+button{
+  letter-spacing: 0.05rem;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -21,25 +21,25 @@ const UserInfo = ({ user, label }: UserInfoProps) => {
           </p>
         </div>
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Name</p>
+          <p className="text-sm font-medium">用戶名稱</p>
           <p className="truncate text-sm max-w-[180px] rounded-md p-1 bg-slate-100 font-mono">
             {user?.name}
           </p>
         </div>
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Email</p>
+          <p className="text-sm font-medium">電子信箱</p>
           <p className="truncate text-sm max-w-[180px] rounded-md p-1 bg-slate-100 font-mono">
             {user?.email}
           </p>
         </div>
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Role</p>
+          <p className="text-sm font-medium">用戶身份</p>
           <p className="truncate text-sm max-w-[180px] rounded-md p-1 bg-slate-100 font-mono">
             {user?.role}
           </p>
         </div>
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
-          <p className="text-sm font-medium">Two Factor Authentication</p>
+          <p className="text-sm font-medium">雙重身分驗證</p>
           <Badge className="cursor-pointer text-sm rounded-md p-x-4 font-mono" variant={user?.isTwoFactorEnabled ? "success": "destructive" }>
             {user?.isTwoFactorEnabled ? "ON" : "OFF"}
           </Badge>

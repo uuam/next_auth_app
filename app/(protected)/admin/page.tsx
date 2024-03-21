@@ -21,28 +21,28 @@ const AdminPage = () => {
   const onApiRouteClick = () => {
     fetch("/api/admin").then((response) => {
       if (response.ok) {
-        toast.success("Allowed API Route!")
+        toast.success("許可使用的 API路由")
       } else {
-       toast.error("Forbidden API Route!")
+       toast.error("禁止使用的 API路由!")
       }
     });
   };
   return (
     <Card className="w-[600px]">
-      <CardHeader>
-        <p className="text-2xl font-semibold text-center">🔑 Admin</p>
+      <CardHeader>  
+        <p className="text-2xl font-semibold text-center">🔑 管理員</p>
       </CardHeader>
       <CardContent className="space-y-4">
         <RoleGate allowedRole={UserRole.ADMIN}>
-          <FormSuccess message="You are allowed to see this content!" />
+          <FormSuccess message="您可以看到此內容！" />
         </RoleGate>
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-md">
-          <p>Admin-only API Route</p>
-          <Button onClick={onApiRouteClick}>Click to test</Button>
+          <p> API 路由僅限管理員</p>
+          <Button onClick={onApiRouteClick}>點擊測試</Button>
         </div>
         <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-md">
-          <p>Admin-only Server Action</p>
-          <Button onClick={onServerActionClick}>Click to test</Button>
+          <p>伺服器僅限管理員操作</p>
+          <Button onClick={onServerActionClick}>點擊測試</Button>
         </div>
       </CardContent>
     </Card>

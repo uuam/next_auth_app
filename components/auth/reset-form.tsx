@@ -20,7 +20,6 @@ import { useState, useTransition } from "react";
 import { BeatLoader } from "react-spinners";
 import { reset } from "@/actions/reset";
 
-
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -46,9 +45,9 @@ export const ResetForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Forgot your password?"
+      headerLabel="確認用戶信箱"
       backButtonHref="/auth/login"
-      backButtonLabel="Back to login"
+      backButtonLabel="返回登入頁面"
     >
       <Form {...form}>
         <form className="space-y-6 " onSubmit={form.handleSubmit(onSubmit)}>
@@ -58,7 +57,7 @@ export const ResetForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>電子信箱</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -82,7 +81,7 @@ export const ResetForm = () => {
             {isPending ? (
               <BeatLoader className="text-center" size={10} />
             ) : (
-              "Send reset email"
+              "發送郵件"
             )}
           </Button>
         </form>

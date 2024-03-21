@@ -45,9 +45,9 @@ export const RegisterForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Create an account"
+      headerLabel="創建一個新帳號"
       backButtonHref="/auth/login"
-      backButtonLabel="Already have an account?"
+      backButtonLabel="已經擁有帳號了嗎？"
       showSocials
     >
       <Form {...form}>
@@ -58,7 +58,7 @@ export const RegisterForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>User Name</FormLabel>
+                  <FormLabel>用戶名稱</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
@@ -76,7 +76,7 @@ export const RegisterForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>電子信箱</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -94,7 +94,7 @@ export const RegisterForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>密碼</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} placeholder="******" />
                   </FormControl>
@@ -106,7 +106,7 @@ export const RegisterForm = () => {
           <FormSuccess message={success} />
           <FormError message={error} />
           <Button disabled={isPending} className="w-full" type="submit">
-            {isPending ? <BeatLoader size={10} /> : "Create an account"}
+            {isPending ? <BeatLoader size={10} /> : "創建帳號"}
           </Button>
         </form>
       </Form>

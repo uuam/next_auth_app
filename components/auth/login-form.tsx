@@ -71,9 +71,9 @@ export const LoginForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Welcome back"
+      headerLabel="歡迎回來"
       backButtonHref="/auth/register"
-      backButtonLabel="Don't have an account?"
+      backButtonLabel="還沒有帳號嗎？"
       showSocials
     >
       <Form {...form}>
@@ -87,7 +87,7 @@ export const LoginForm = () => {
                     name="code"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Two Factor code</FormLabel>
+                        <FormLabel>驗證碼</FormLabel>
                         <FormControl>
                           <Input
                             type="text"
@@ -106,7 +106,7 @@ export const LoginForm = () => {
                     {isPending ? (
                       <BeatLoader className="text-center" size={10} />
                     ) : (
-                      "Confrim"
+                      "確認"
                     )}
                   </Button>
                 </div>
@@ -120,7 +120,7 @@ export const LoginForm = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>電子信箱</FormLabel>
                         <FormControl>
                           <Input
                             type="email"
@@ -142,7 +142,7 @@ export const LoginForm = () => {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>密碼</FormLabel>
                         <FormControl>
                           <Input
                             type="password"
@@ -150,6 +150,7 @@ export const LoginForm = () => {
                             placeholder="******"
                           />
                         </FormControl>
+                        <FormMessage />
                         <Button
                           size="sm"
                           variant="link"
@@ -157,9 +158,8 @@ export const LoginForm = () => {
                           className="px-0 font-normal text-xs"
                         >
                           {/* forgot password */}
-                          <Link href="/auth/reset">Forgot password?</Link>
+                          <Link href="/auth/reset">忘記密碼了嗎？</Link>
                         </Button>
-                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -169,7 +169,7 @@ export const LoginForm = () => {
                     {isPending ? (
                       <BeatLoader className="text-center" size={10} />
                     ) : (
-                      "Login"
+                      "登入"
                     )}
                   </Button>
                 </div>
