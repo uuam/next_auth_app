@@ -76,8 +76,8 @@ export const LoginForm = () => {
       backButtonLabel="還沒有帳號嗎？"
       showSocials
     >
-      <Form {...form}>
-        <form className="space-y-6 " onSubmit={form.handleSubmit(onSubmit)}>
+      <Form {...form} >
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-4">
             {showTwoFactor && (
               <>

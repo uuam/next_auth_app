@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 import { useSession } from "next-auth/react";
-import { useState, useTransition } from "react";
+import { useContext, useState, useTransition } from "react";
 import { BeatLoader } from "react-spinners";
 import { useForm } from "react-hook-form";
 import { SettingsSchema } from "@/schemas";
@@ -33,12 +33,14 @@ import {
 } from "@/components/ui/select";
 import { UserRole } from "@prisma/client";
 import { Switch } from "@/components/ui/switch";
+import { MyContext } from "../layout";
 
 const SettingPage = () => {
   const user = useCurrentUser();
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
   const { update } = useSession();
+  const isMobile = useContext(MyContext)
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
@@ -52,6 +54,7 @@ const SettingPage = () => {
       isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
     },
   });
+
 
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
     startTransition(() => {
@@ -75,7 +78,7 @@ const SettingPage = () => {
   };
 
   return (
-    <Card className="w-[600px]">
+    <Card className="w-screen h-full rounded-none sm:rounded-lg sm:h-auto sm:w-[600px]">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">⚙️ 設定</p>
       </CardHeader>
@@ -225,7 +228,7 @@ const SettingPage = () => {
             <FormError message={error} />
             <FormSuccess message={success} />
             <div className="flex justify-end">
-              <Button disabled={isPending} type="submit" className="min-w-16">
+              <Button disabled={isPending} type="submit" className="w-full sm:w-auto min-w-16">
                 {isPending ? <BeatLoader size={10} /> : "儲存"}
               </Button>
             </div>
