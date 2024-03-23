@@ -1,6 +1,7 @@
 "use client";
 
 import { Navbar } from "@/app/(protected)/_components/navbar";
+
 import { createContext, useEffect, useState } from "react";
 
 interface ProtectedLayoutProps {

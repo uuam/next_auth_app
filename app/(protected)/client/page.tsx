@@ -1,11 +1,11 @@
-"use client";
-import UserInfo from "@/components/user-info";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { Metadata } from "next";
+import ClientPageItem from "../_components/clientItem";
 
+export const metadata: Metadata = {
+  title: "客戶端",
+};
 const ClientPage = () => {
-  const user = useCurrentUser();
-
-  return <UserInfo label="📱 客戶端組件" user={user} />;
+  return <ClientPageItem />;
 };
 
 export default ClientPage;
