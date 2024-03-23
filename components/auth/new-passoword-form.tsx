@@ -24,7 +24,7 @@ import { newPassword } from "@/actions/new-password";
 export const NewPasswordForm = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
-  let urlError;
+
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -58,9 +58,9 @@ export const NewPasswordForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Enter a new password"
+      headerLabel="輸入新密碼"
       backButtonHref="/auth/login"
-      backButtonLabel="Back to login"
+      backButtonLabel="返回登入頁面"
     >
       <Form {...form}>
         <form className="space-y-6 " onSubmit={form.handleSubmit(onSubmit)}>
@@ -70,7 +70,7 @@ export const NewPasswordForm = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>密碼</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} placeholder="******" />
                   </FormControl>
@@ -85,7 +85,7 @@ export const NewPasswordForm = () => {
             {isPending ? (
               <BeatLoader className="text-center" size={10} />
             ) : (
-              "Reset Password"
+              "確認重設密碼"
             )}
           </Button>
         </form>

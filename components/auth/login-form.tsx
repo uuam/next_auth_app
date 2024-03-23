@@ -125,7 +125,7 @@ export const LoginForm = () => {
                           <Input
                             type="email"
                             {...field}
-                            placeholder="john@example.com"
+                            placeholder="user@example.com"
                             disabled={isPending}
                             onChange={(e) => {
                               field.onChange(e);

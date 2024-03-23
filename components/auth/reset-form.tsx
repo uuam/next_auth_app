@@ -62,7 +62,7 @@ export const ResetForm = () => {
                     <Input
                       type="email"
                       {...field}
-                      placeholder="john@example.com"
+                      placeholder="user@example.com"
                       disabled={isPending}
                       value={field.value}
                       onChange={(e) => {
