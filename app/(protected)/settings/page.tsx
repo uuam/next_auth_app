@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/select";
 import { UserRole } from "@prisma/client";
 import { Switch } from "@/components/ui/switch";
-import { MyContext } from "../layout";
+import { MyContext } from "@/app/(protected)/layout";
 
 const SettingPage = () => {
   const user = useCurrentUser();
