@@ -31,7 +31,7 @@ const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   const isMobile = screenWidth < 640;
 
   return (
-    <div className="fixed flex-col-reverse h-full w-full flex sm:gap-y-10 items-center justify-normal sm:flex-col	sm:justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
+    <div className="flex-col-reverse flex sm:gap-y-10 items-center justify-normal mt-4 sm:py-4 sm:min-h-full w-full sm:mt-0 sm:flex-col sm:justify-center sm:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
       <Navbar isMobile={isMobile} />
       <MyContext.Provider value={isMobile}>{children}</MyContext.Provider>
     </div>

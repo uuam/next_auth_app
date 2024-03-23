@@ -9,7 +9,7 @@ interface UserInfoProps {
 
 const UserInfo = ({ user, label }: UserInfoProps) => {
   return (
-    <Card className="w-screen h-full rounded-none sm:rounded-lg sm:h-auto sm:w-[600px]">
+    <Card className="w-screen h-full rounded-none border-none sm:border  sm:rounded-lg sm:h-auto sm:w-[600px]">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">{label}</p>
       </CardHeader>

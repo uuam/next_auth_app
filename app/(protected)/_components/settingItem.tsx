@@ -76,7 +76,7 @@ const SettingItem = () => {
   };
 
   return (
-    <Card className="w-screen h-full rounded-none sm:rounded-lg sm:h-auto sm:w-[600px]">
+    <Card className="w-screen h-full pb-20 rounded-none border-none sm:pb-0 sm:border sm:rounded-lg sm:h-auto sm:w-[600px]">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">⚙️ 設定</p>
       </CardHeader>

@@ -31,8 +31,8 @@ export const Navbar = ({ isMobile }: { isMobile: boolean }) => {
       ) : (
         ""
       )}
-      <nav className="z-0 w-screen justify-evenly px-2 py-6 bg-secondary flex sm:justify-between sm:items-center sm:p-4 sm:rounded-xl sm:w-[600px] shadow-sm">
-        <div className="flex gap-x-2">
+      <nav className="fixed bottom-0 left-0 z-0 w-screen justify-evenly px-2 py-6 bg-secondary sm:static flex sm:justify-between sm:items-center sm:p-4 sm:rounded-xl sm:w-[600px] shadow-sm">
+        <div className="flex gap-x-3 sm:gap-x-2">
           <Button
             asChild
             variant={pathname === "/server" ? "default" : "outline"}

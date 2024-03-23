@@ -6,9 +6,12 @@ html,
 body,
 :root {
   height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-button{
+button {
   letter-spacing: 0.05rem;
 }
 

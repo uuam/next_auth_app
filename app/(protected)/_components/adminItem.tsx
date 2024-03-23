@@ -28,7 +28,7 @@ const AdminPageItem = () => {
     });
   };
   return (
-    <Card className="w-screen h-full rounded-none sm:rounded-lg sm:h-auto sm:w-[600px]">
+    <Card className="w-screen h-full border-none sm:border rounded-none sm:rounded-lg sm:h-auto sm:w-[600px]">
       <CardHeader>  
         <p className="text-2xl font-semibold text-center">🔑 管理員</p>
       </CardHeader>
