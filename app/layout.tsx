@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     template: "%s | 2FA",
     absolute: "Next Auth | 2FA",
   },
+  verification: {
+    google:'5Xy4AgCm0ktuVq6l8VME36ZvjQ9rT2eSOUISypaXV3A',
+  },
   description:
     "使用 Auth.js 進行用戶驗證，Next.js 框架搭建的簡易響應式網頁｜簡易的雙重驗證網頁，具有註冊登入等功能，也可使用社交媒體帳號登入｜Google | Github",
   icons: "favicon.ico",

@@ -1,0 +1,12 @@
+User-agent: *
+
+Disallow: /auth/
+Disallow: /private/
+Disallow: /admin/
+
+Allow: /
+Allow:/auth/register
+Allow:/auth/login
+
+# 設置爬取頻率限制
+Crawl-delay: 10  # 設置每次爬取之間的延遲時間，單位為秒
