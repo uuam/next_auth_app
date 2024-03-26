@@ -4,19 +4,33 @@ import { Navbar } from "@/app/(protected)/_components/navbar";
 
 import { createContext, useEffect, useState } from "react";
 
+import useWindowSize from "@rooks/use-window-size"
+
 interface ProtectedLayoutProps {
   children: React.ReactNode;
 }
 
+// function getWindowDimensions() {
+//   if (typeof window !== "undefined") {
+//     const { innerWidth } = window;
+//     return innerWidth;
+//   }
+//   return null; // 在伺服器端返回 null 或適當的預設值
+// }
 function getWindowDimensions() {
-  const { innerWidth } = window;
-  return innerWidth;
+  if (window) {
+    const { innerWidth } = window;
+    return innerWidth;
+  }
+  else return 640
 }
 
 export const MyContext = createContext<boolean>(false);
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   "use client";
+  // const { innerWidth } = useWindowSize();
+
   const [screenWidth, setScreenWidth] = useState<number>(getWindowDimensions());
 
   useEffect(() => {

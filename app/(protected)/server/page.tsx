@@ -7,9 +7,16 @@ export const metadata: Metadata = {
 };
 
 const ServerPage = async () => {
+  // let user;
+  // try {
+  //   user = await currentUser();
+
+  // } catch (error) {
+  //   console.error(error);
+  // }
   const user = await currentUser();
 
-  return <UserInfo label="💻 伺服器端組件" user={user} />;
+  if (user) return <UserInfo label="💻 伺服器端組件" user={user} />;
 };
 
 export default ServerPage;
