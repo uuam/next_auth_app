@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react"
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { auth } from "@/auth";
@@ -48,6 +49,7 @@ export default async function RootLayout({
         <body className={cn(inter.className, " tracking-wider")}>
           <Toaster />
           {children}
+          <Analytics />
         </body>
       </html>
     </SessionProvider>
