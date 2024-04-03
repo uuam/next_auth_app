@@ -14,7 +14,7 @@ export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
-  const errorPath = nextUrl.pathname.includes('/api/auth/auth/login')
+  const errorPath = nextUrl.pathname.includes('/api/auth/auth')
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
